@@ -10,7 +10,12 @@
 #import "CLCMath.h"
 
 @interface CLCViewController : UIViewController
+
+#warning Аутлеты не стоит показывать в *.h, их необходимо перенести в *.m и сделать как @property. Если необходимо какой-то аутлет показать наружу, то его лучше объявить в *.h как readonly, то есть @property (nonatomic, weak, readonly), чтоб нельзя было его изменить снаружи
 {
+
+    
+#warning calculationsResultLabel объявлена в Storyboard как hidden. В коде ее видимость не меняется. Зачем она тогда нужна?
  IBOutlet UILabel *calculationsResultLabel;
  IBOutlet UILabel *expressionLabel;
  IBOutlet UIButton *plusMinusButton;
@@ -22,6 +27,8 @@
  IBOutlet UIButton *equalButton;
  IBOutlet UIButton *cButton;
 }
+
+#warning Actions без надобности не стоит показывать в *.h
 -(IBAction)clearResult:(id)sender;
 -(IBAction)digit:(id)sender;
 -(IBAction)operation:(id)sender;

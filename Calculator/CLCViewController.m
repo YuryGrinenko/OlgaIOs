@@ -25,6 +25,7 @@
 	// инициализируем объект для вычислений
     _calculation = [[CLCMath alloc]init];
     //запоминаем исходные цвета кнопок
+#warning Лучше эти цвета забить где-то константами, перед реализацией класса
     _buttonsRight = plusButton.backgroundColor;
     _buttonsUpColor = plusMinusButton.backgroundColor;
     _disableColor = [[UIColor alloc] initWithRed:150 green:150 blue:150 alpha:0.5];
@@ -37,6 +38,7 @@
     [super didReceiveMemoryWarning];
 }
 
+#warning В методах enableButtons и disableButtons явно происходит дублирование кода. Если ты добавишь еще какую-либо кнопку, ее придется дописать в оба эти метода. Плюс из имени метода неясно, о каких кнопках идет речь. Лучше создать один метод вроде - (void)setOperationsButtonsEnabled:(BOOL)enabled и в нем уже выполнять логику
 //доступность кнопок
 -(void)enableButtons
 {
@@ -147,6 +149,8 @@
 }
 
 //обновить лэйбл после нажатия цифры
+#warning Я бы не разделял вывод состояния модели на вывод после ввода операнда и вывод после ввода операции. Лучше сделать единый метод вывода состояния модели, который будет использовать отдельный объект-форматтер. Все проверки на введенные аргументы завернуть в форматтер
+
 -(void)refreshLabelAfterDigitPress{
     NSString *labelText = [NSString stringWithFormat:@"%1.2f",[_calculation.y floatValue]];
     [calculationsResultLabel setText:labelText];

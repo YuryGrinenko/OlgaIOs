@@ -8,11 +8,17 @@
 
 #import "CLCMath.h"
 
+@interface CLCMath ()
+
+
+@end
+
 @implementation CLCMath
 
 -(id)init
 {
     self = [super init];
+#warning По заповедям Apple здесь должна быть проверка if (self) {}. Следует придерживаться такого подхода
     self.x = [NSNumber numberWithFloat:0];
     self.y = [NSNumber numberWithFloat:0];
     self.xyOperation = NONE;
@@ -21,6 +27,7 @@
     return self;
 }
 
+#warning Если сначала ввести  7 + 6 = 13, затем сбросить результаты, далее ввести 7 / 0, то выведется 7 + 6 = inf
 -(void)mathOperation:(CLCOperation)operationName
 {
     float number1 = [self.x floatValue];
